@@ -28,6 +28,7 @@ const schema = z.object({
         .string()
         .min(1, { message: "Email is required" })
         .email({ message: "Invalid email address" }),
+    username: z.string().min(4, { message: "Username is required" }),
     password1: z
         .string()
         .min(1, { message: "Password is required" })
