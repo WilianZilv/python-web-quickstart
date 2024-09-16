@@ -1,1 +1,8 @@
 __pycache__
+Makefile
+pyproject.toml
+uv.lock
+README.md
+alembic.ini
+.env
+migrations
