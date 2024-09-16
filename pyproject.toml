@@ -11,11 +11,11 @@ dependencies = [
     "pyjwt>=2.9.0",
     "python-dotenv>=1.0.1",
     "sqlmodel>=0.0.22",
-    "uvicorn>=0.30.6",
 ]
 
 [tool.uv]
 dev-dependencies = [
     "alembic>=1.13.2",
     "pip>=24.2",
+    "uvicorn>=0.30.6",
 ]

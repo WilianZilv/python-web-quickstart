@@ -6,14 +6,10 @@ anyio==4.4.0
     # via starlette
 asyncpg==0.29.0
     # via fastapi-boilerplate (pyproject.toml)
-click==8.1.7
-    # via uvicorn
 fastapi==0.114.2
     # via fastapi-boilerplate (pyproject.toml)
 greenlet==3.1.0
     # via sqlalchemy
-h11==0.14.0
-    # via uvicorn
 idna==3.10
     # via anyio
 passlib==1.7.4
@@ -42,5 +38,3 @@ typing-extensions==4.12.2
     #   pydantic
     #   pydantic-core
     #   sqlalchemy
-uvicorn==0.30.6
-    # via fastapi-boilerplate (pyproject.toml)
