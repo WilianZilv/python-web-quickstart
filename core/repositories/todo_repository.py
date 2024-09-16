@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from sqlmodel import desc
 from core.entities.todo import Todo
 from core.config.database import AsyncSession, db, Depends, select
 
@@ -29,7 +30,11 @@ class TodoRepository:
 
     async def find_all_todos_by_user_id(self, user_id: int):
         return (
-            (await self.session.execute(select(Todo).where(Todo.user_id == user_id)))
+            (
+                await self.session.execute(
+                    select(Todo).where(Todo.user_id == user_id).order_by(desc("id"))
+                )
+            )
             .scalars()
             .all()
         )
