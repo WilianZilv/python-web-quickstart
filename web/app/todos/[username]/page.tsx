@@ -471,14 +471,14 @@ function TodoItem({
       <div className="flex justify-between overflow-auto">
         <div className="flex items-center gap-2 w-full  overflow-auto">
           <Dot className="h-2 w-2" color={todo.ended_at ? "green" : "blue"} />
-          <span
+          <p
             onClick={() => toggleTodo(todo.id)}
             className={`hover:cursor-pointer word-break text-sm ${
               !!todo.ended_at ? "line-through text-muted-foreground" : ""
             }`}
           >
-            {todo.title.slice(0, 40) + (todo.title.length > 40 ? "..." : "")}
-          </span>
+            {todo.title}
+          </p>
         </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
