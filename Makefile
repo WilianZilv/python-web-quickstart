@@ -10,12 +10,21 @@ db-upgrade:
 db-downgrade:
 	alembic downgrade -1
 
-dev-api:
+api-dev:
 	uvicorn api.main:app --reload
+
+web-dev:
+	cd web && npm run dev
 
 compile-requirements:
 	uv pip compile pyproject.toml -o requirements.txt
 
 vercel-deploy:
 	vercel deploy --prod
+	cd web && vercel deploy --prod
+
+vercel-deploy-api:
+	vercel deploy --prod
+
+vercel-deploy-web:
 	cd web && vercel deploy --prod
