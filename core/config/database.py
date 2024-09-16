@@ -9,15 +9,8 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlmodel import select
 from fastapi import Depends
-from dotenv import load_dotenv
-import os
 
-load_dotenv()
-
-URI = os.getenv("DATABASE_URI")
-
-if URI is None:
-    raise ValueError("enviroment variable DATABASE_URI is not set")
+from core.config import env
 
 
 @dataclass
@@ -39,6 +32,6 @@ class DatabaseConfig:
                     raise e
 
 
-db = DatabaseConfig(URI=URI)
+db = DatabaseConfig(URI=env.DATABASE_URI)
 
 session_dependency = Depends(db.get_session)
