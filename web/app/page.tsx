@@ -5,12 +5,19 @@ import { cookies } from "next/headers";
 
 export default async function Home() {
 
-  const userDataBase64 = cookies().get("user_data")
-  const user = userDataBase64 ? JSON.parse(atob(userDataBase64.value.slice(1, -1))) : null
+  let userDataBase64 = cookies().get("user_data")?.value
 
-  if (user) {
-    redirect("/todos/" + user.username)
-  }
+  if (userDataBase64 !== undefined){
+    
+    
+    if (userDataBase64.startsWith('"')) userDataBase64 = userDataBase64.slice(1, -1)
+      
+      const user = userDataBase64 ? JSON.parse(atob(userDataBase64)) : null
+      
+      if (user) {
+        redirect("/todos/" + user.username)
+      }
+    }
   redirect("/sign_in")
   return null
 }
