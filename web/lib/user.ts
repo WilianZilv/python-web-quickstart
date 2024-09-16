@@ -19,7 +19,8 @@ export function getUserData(){
         return {}
     }
 
-    const base64 = user_data_raw.trim().replace("user_data=", "").slice(1, -1)
+    let base64 = user_data_raw.trim().replace("user_data=", "")
+    if (base64.startsWith('"')) base64 = base64.slice(1, -1)
 
     return JSON.parse(atob(base64))
 }
