@@ -58,7 +58,11 @@ export type Todo = {
   _not_persisted?: boolean;
 };
 
-async function sleep(ms: number) {
+async function devSleep(ms: number) {
+  if (process.env.NODE_ENV === "production") {
+    return;
+  }
+
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
@@ -116,9 +120,10 @@ export default function Todos({
         _not_persisted: true,
       };
 
+      setNewTodo("");
       setTodos((prev) => [temporaryTodo, ...prev]);
 
-      await sleep(1000);
+      await devSleep(1000);
 
       const res = await fetch("/api/todos/create", {
         method: "POST",
@@ -131,6 +136,7 @@ export default function Todos({
       if (!res.ok) {
         setTodos((prev) => prev.filter((t) => t.id !== temporaryId));
         setLoadingNewTodo(false);
+        setNewTodo(newTodo);
         return;
       }
 
@@ -192,7 +198,7 @@ export default function Todos({
           : t
       )
     );
-    await sleep(1000);
+    await devSleep(1000);
 
     const res = await fetch(`/api/todos/${id}`, {
       method: "PATCH",
