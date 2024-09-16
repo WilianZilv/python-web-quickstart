@@ -14,6 +14,11 @@ import os
 
 load_dotenv()
 
+URI = os.getenv("DATABASE_URI")
+
+if URI is None:
+    raise ValueError("enviroment variable DATABASE_URI is not set")
+
 
 @dataclass
 class DatabaseConfig:
@@ -37,10 +42,6 @@ class DatabaseConfig:
                     await session.close()
 
 
-db = DatabaseConfig(
-    URI=os.getenv(
-        "DATABASE_URI", "postgresql+asyncpg://root:123@localhost:5432/postgres"
-    )
-)
+db = DatabaseConfig(URI=URI)
 
 session_dependency = Depends(db.get_session)
