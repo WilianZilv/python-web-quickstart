@@ -10,7 +10,7 @@ from api.helpers.authentication import auth
 router = APIRouter(prefix="/todos", tags=["todos"])
 
 
-@router.get("/:username")
+@router.get("/{username}")
 async def get_todos(
     username: str,
     usecase: GetTodos = Depends(GetTodos),
