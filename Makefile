@@ -13,5 +13,5 @@ db-downgrade:
 dev-api:
 	uvicorn api.main:app --reload
 
-compile-reuirements:
+compile-requirements:
 	uv pip compile pyproject.toml -o requirements.txt
