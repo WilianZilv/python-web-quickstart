@@ -286,7 +286,7 @@ export default function Todos({
               <CardTitle>
                 {isOwner ? "My todos" : `${username}'s todos`}
               </CardTitle>
-              <Profile username={user?.username} />
+              <Profile username={user?.username} isOwner={isOwner} />
             </div>
           </CardHeader>
           <CardContent className="p-6">

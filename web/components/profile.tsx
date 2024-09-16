@@ -12,7 +12,13 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ExitIcon } from "@radix-ui/react-icons";
 
-export default function Profile({ username }: { username: string }) {
+export default function Profile({
+  username,
+  isOwner,
+}: {
+  username: string;
+  isOwner: boolean;
+}) {
   const router = useRouter();
   const user = getUserData();
 
@@ -32,8 +38,6 @@ export default function Profile({ username }: { username: string }) {
       </div>
     );
   }
-
-  const isOwner = user.username === username;
 
   return (
     <div className="flex items-center gap-2">
