@@ -19,8 +19,6 @@ import { FieldError } from "@/components/field_error";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
 
-export const description =
-  "A sign up form with first name, last name, email and password inside a card. There's an option to sign up with GitHub and a link to login if you already have an account";
 
 const schema = z
   .object({
@@ -151,9 +149,3 @@ export default function RegisterForm() {
     </main>
   );
 }
-
-export const meta = {
-  title: "Sign Up",
-  description: "Create your account",
-  keywords: "signup, account, registration",
-};

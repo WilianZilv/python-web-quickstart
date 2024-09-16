@@ -121,9 +121,3 @@ export default function LoginForm() {
     </main>
   );
 }
-
-export const meta = {
-  title: "Login",
-  description: "Login to your account",
-  keywords: "login",
-};

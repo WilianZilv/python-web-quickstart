@@ -553,9 +553,3 @@ function TodoItem({
     </>
   );
 }
-
-export const meta = {
-  title: "Todos",
-  description: "Todos",
-  keywords: "todos",
-};
