@@ -16,8 +16,7 @@ import { handleSubmit } from "@/lib/form"
 import { z } from "zod"
 import { useState } from "react"
 import { FieldError } from "@/components/field_error"
-import { redirect, useRouter } from "next/navigation"
-import { useToast } from "@/hooks/use-toast"
+import { redirect } from "next/navigation"
 
 const schema = z.object({
     email_or_username: z.string().min(1, { message: "Email or username is required" }),
@@ -43,10 +42,6 @@ export default function LoginForm() {
 
     const [errors, setErrors] = useState<Record<string | number, string>>({});
 
-    const router = useRouter()
-
-    const toast = useToast()
-
     function onSubmit(data: any) {
 
         async function fetchData() {
@@ -61,14 +56,9 @@ export default function LoginForm() {
 
 
             if (!res.ok) {
-                const { message } = await res.json()
-                toast.toast({
-                    title: message,
-                    variant: "destructive",
-                })
                 return
             }
-            router.replace("/")
+            redirect("/")
         }
 
         fetchData()

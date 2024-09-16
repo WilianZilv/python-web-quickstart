@@ -17,6 +17,8 @@ import { z } from "zod"
 import { useState } from "react"
 import { handleSubmit } from "@/lib/form"
 import { FieldError } from "@/components/field_error"
+import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation"
 
 export const description =
     "A sign up form with first name, last name, email and password inside a card. There's an option to sign up with GitHub and a link to login if you already have an account"
@@ -56,9 +58,34 @@ export default function RegisterForm() {
 
     const [errors, setErrors] = useState({});
 
+    const toast = useToast()
+    const router = useRouter()
+
     const onSubmit = (data: any) => {
 
-        console.log(data) // dados validados já
+        async function fetchData() {
+
+            const res = await fetch("/api/users/create_account", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+
+
+            if (!res.ok) {
+                const { message } = await res.json()
+                toast.toast({
+                    title: message,
+                    variant: "destructive",
+                })
+                return
+            }
+            router.replace("/")
+        }
+
+        fetchData()
     };
 
     return (
