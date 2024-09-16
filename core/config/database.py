@@ -9,11 +9,15 @@ from sqlalchemy.ext.asyncio import (
 )
 from sqlmodel import select
 from fastapi import Depends
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 @dataclass
 class DatabaseConfig:
-    URI: str = "postgresql+asyncpg://root:123@localhost:5432/postgres"
+    URI: str
     engine: AsyncEngine | None = None
 
     def __post_init__(self):
@@ -33,6 +37,10 @@ class DatabaseConfig:
                     await session.close()
 
 
-db = DatabaseConfig()
+db = DatabaseConfig(
+    URI=os.getenv(
+        "DATABASE_URI", "postgresql+asyncpg://root:123@localhost:5432/postgres"
+    )
+)
 
 session_dependency = Depends(db.get_session)

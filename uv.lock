@@ -102,6 +102,7 @@ dependencies = [
     { name = "fastapi" },
     { name = "passlib" },
     { name = "pyjwt" },
+    { name = "python-dotenv" },
     { name = "sqlmodel" },
     { name = "uvicorn" },
 ]
@@ -113,6 +114,7 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.114.2" },
     { name = "passlib", specifier = ">=1.7.4" },
     { name = "pyjwt", specifier = ">=2.9.0" },
+    { name = "python-dotenv", specifier = ">=1.0.1" },
     { name = "sqlmodel", specifier = ">=0.0.22" },
     { name = "uvicorn", specifier = ">=0.30.6" },
 ]
@@ -256,6 +258,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/fb/68/ce067f09fca4abeca8771fe667d89cc347d1e99da3e093112ac329c6020e/pyjwt-2.9.0.tar.gz", hash = "sha256:7e1e5b56cc735432a7369cbfa0efe50fa113ebecdc04ae6922deba8b84582d0c", size = 78825 }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/79/84/0fdf9b18ba31d69877bd39c9cd6052b47f3761e9910c15de788e519f079f/PyJWT-2.9.0-py3-none-any.whl", hash = "sha256:3b02fb0f44517787776cf48f2ae25d8e14f300e6d7545a4315cee571a415e850", size = 22344 },
+]
+
+[[package]]
+name = "python-dotenv"
+version = "1.0.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/bc/57/e84d88dfe0aec03b7a2d4327012c1627ab5f03652216c63d49846d7a6c58/python-dotenv-1.0.1.tar.gz", hash = "sha256:e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca", size = 39115 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6a/3e/b68c118422ec867fa7ab88444e1274aa40681c606d59ac27de5a5588f082/python_dotenv-1.0.1-py3-none-any.whl", hash = "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a", size = 19863 },
 ]
 
 [[package]]
