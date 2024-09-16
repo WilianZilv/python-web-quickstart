@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
-    Bookmark,
+  Bookmark,
   CheckCircle2,
   CheckIcon,
   ChevronDown,
@@ -92,12 +92,17 @@ export default function Todos({
     fetchData();
   }, []);
 
-  const ignoreInteractions = loading || loadingNewTodo || todos === undefined || !isAuthenticated || !isOwner;
+  const ignoreInteractions =
+    loading ||
+    loadingNewTodo ||
+    todos === undefined ||
+    !isAuthenticated ||
+    !isOwner;
 
   const addTodo = () => {
     async function fetchData() {
       if (!isAuthenticated) return;
-    if(!isOwner) return;
+      if (!isOwner) return;
       if (!newTodo) return;
       if (ignoreInteractions) return;
       setLoadingNewTodo(true);
@@ -272,24 +277,28 @@ export default function Todos({
         <Card className="w-full max-w-4xl mx-auto">
           <CardHeader className="border-b">
             <div className="flex items-center justify-between">
-              <CardTitle>{isOwner ? "My todos" : `${username}'s todos`}</CardTitle>
+              <CardTitle>
+                {isOwner ? "My todos" : `${username}'s todos`}
+              </CardTitle>
               <Profile username={user?.username} />
             </div>
           </CardHeader>
           <CardContent className="p-6">
             <div className="space-y-6">
-              {isOwner? (<div className="flex space-x-2">
-                <Input
-                  placeholder="Add a new todo..."
-                  value={newTodo}
-                  onChange={(e) => setNewTodo(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && addTodo()}
-                />
-                <Button disabled={ignoreInteractions} onClick={addTodo}>
-                  <PlusCircle className="h-4 w-4 mr-2" />
-                  Add
-                </Button>
-              </div>) : null}
+              {isOwner ? (
+                <div className="flex space-x-2">
+                  <Input
+                    placeholder="Add a new todo..."
+                    value={newTodo}
+                    onChange={(e) => setNewTodo(e.target.value)}
+                    onKeyPress={(e) => e.key === "Enter" && addTodo()}
+                  />
+                  <Button disabled={ignoreInteractions} onClick={addTodo}>
+                    <PlusCircle className="h-4 w-4 mr-2" />
+                    Add
+                  </Button>
+                </div>
+              ) : null}
 
               <TodoList
                 todos={todos}
@@ -309,7 +318,7 @@ export default function Todos({
 function NoTodos() {
   return (
     <div className="gap-2 h-[400px] flex flex-col items-center justify-center text-center">
-    <Bookmark color="gray"/>
+      <Bookmark color="gray" />
       <p className="text-sm text-muted-foreground">No todos found.</p>
     </div>
   );
@@ -331,7 +340,6 @@ function TodoList({
   return (
     <ScrollArea className="h-[400px] pr-4">
       <div className="space-y-2">
-
         {loading
           ? Array.from({ length: 5 }).map((_, i) => (
               <TodoItemSkeleton key={i} />
@@ -357,14 +365,15 @@ function TodoItemSkeleton() {
     <>
       <div className="flex flex-col gap-2 justify-between overflow-auto">
         <div className="flex items-center gap-2 w-full  overflow-auto">
-          <Dot className="h-3 w-3" color="gray"/>
+          <Dot className="h-3 w-3" color="gray" />
           <Skeleton className="h-5 w-full" />
         </div>
         <div className="flex items-center gap-2">
-          <Tag className="h-3 w-3" color="gray"/> <Skeleton className="h-5 w-24" />
+          <Tag className="h-3 w-3" color="gray" />{" "}
+          <Skeleton className="h-5 w-24" />
           <CheckIcon className="h-4 w-4" color="gray" />
-           <Skeleton className="h-5 w-24" />
-           <Clock className="h-3 w-3" color="gray"/>
+          <Skeleton className="h-5 w-24" />
+          <Clock className="h-3 w-3" color="gray" />
           <Skeleton className="h-5 w-5" />
         </div>
       </div>
@@ -544,3 +553,9 @@ function TodoItem({
     </>
   );
 }
+
+export const meta = {
+  title: "Todos",
+  description: "Todos",
+  keywords: "todos",
+};
