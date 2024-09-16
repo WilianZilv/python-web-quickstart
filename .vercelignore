@@ -9,3 +9,4 @@ alembic.ini
 .env
 migrations
 web
+.env.dev
