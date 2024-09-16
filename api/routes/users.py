@@ -42,3 +42,11 @@ async def create_account(
 ):
     user = await usecase.execute(new_user)
     auth.authenticate(response, user)
+
+
+@router.get("/sign_out")
+async def sign_out():
+    response = Response(status_code=200)
+    response.delete_cookie(key="user")
+    response.delete_cookie(key="user_data")
+    return response
