@@ -3,10 +3,12 @@ from fastapi.responses import JSONResponse
 from core.helpers.exceptions import CustomException
 
 
-def http_exception_handler(request: Request, exc: Exception | CustomException):
+async def http_exception_handler(request: Request, exc: Exception):
 
-    if not isinstance(exc, CustomException):
-        raise exc
+    return JSONResponse({"message": "Internal Server Error"}, status_code=500)
+
+
+async def http_custom_exception_handler(request: Request, exc: CustomException):
 
     message = exc.message
     code = exc.code

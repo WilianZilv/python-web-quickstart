@@ -15,3 +15,7 @@ dev-api:
 
 compile-requirements:
 	uv pip compile pyproject.toml -o requirements.txt
+
+vercel-deploy:
+	vercel deploy --prod
+	cd web && vercel deploy --prod

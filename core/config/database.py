@@ -23,23 +23,20 @@ if URI is None:
 @dataclass
 class DatabaseConfig:
     URI: str
-    engine: AsyncEngine | None = None
-
-    def __post_init__(self):
-        self.engine = create_async_engine(self.URI)
-        self.async_session = async_sessionmaker(self.engine)
 
     async def get_session(self) -> AsyncSession | Any | None:
-        async with self.async_session() as session:
-            async with session.begin_nested():
+
+        engine = create_async_engine(self.URI)
+        async_session = async_sessionmaker(engine)
+
+        async with async_session() as session:
+            async with session.begin():
                 try:
                     yield session
                     await session.commit()
                 except Exception as e:
                     await session.rollback()
                     raise e
-                finally:
-                    await session.close()
 
 
 db = DatabaseConfig(URI=URI)
