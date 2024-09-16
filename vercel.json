@@ -3,6 +3,10 @@
         {
             "src": "api/main.py",
             "use": "@vercel/python"
+        },
+        {
+            "src": "web/package.json",
+            "use": "@vercel/next"
         }
     ],
     "routes": [
