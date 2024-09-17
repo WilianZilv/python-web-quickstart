@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronDown, Tag, User } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
@@ -7,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { getUserData, signOut } from "@/lib/user";
+import { signOut } from "@/lib/user";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ExitIcon } from "@radix-ui/react-icons";
@@ -15,18 +17,19 @@ import { ExitIcon } from "@radix-ui/react-icons";
 export default function Profile({
   username,
   isOwner,
+  isAuthenticated,
 }: {
   username: string;
   isOwner: boolean;
+  isAuthenticated: boolean;
 }) {
   const router = useRouter();
-  const user = getUserData();
 
   const goToMyTodos = () => {
     router.push("/todos/" + username);
   };
 
-  if (!user?.username) {
+  if (!isAuthenticated) {
     return (
       <div>
         <Link href="/sign_in">
