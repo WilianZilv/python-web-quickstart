@@ -57,10 +57,14 @@ interface ActionResult {
 
 const resultListeners = {} as any
 
-export function onActionResult(action: string, handler: ({ data, error }: ActionResult) => Promise<void> | void) {
+export function onActionResult(action: string, handler: ({ data, error }: ActionResult) => Promise<void> | void, globalError: boolean = false) {
   
-  const subject = `${action}:result`;
+  let subject = `${action}:result`;
   
+  if (globalError) {
+    subject = action;
+  }
+
   if (resultListeners[subject]) {
     unsubscribe(resultListeners[subject])
   }

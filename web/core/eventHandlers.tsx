@@ -22,10 +22,15 @@ onActionResult("addTodo", ({ data, error }: { data: Todo; error: any }) => {
   });
 });
 
-onActionResult("error", ({ error }: { error: any }) => {
-  if (error?.name === "AbortError") return;
-  toast("Error", {
-    description: error.message,
-    important: true,
-  });
-});
+onActionResult(
+  "error",
+  ({ error }: { error: any }) => {
+    console.log(error);
+    if (error?.name === "AbortError") return;
+    toast(error.message, {
+      important: true,
+      icon: "❌",
+    });
+  },
+  true
+);
